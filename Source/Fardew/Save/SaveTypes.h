@@ -18,6 +18,7 @@ namespace atlas
     struct WorldSaveData
     {
         int dayNumber = 1;
+        int clockMinuteOfDay = 360; // 06:00 default
         int weatherType = 0;
         // TODO: crops, placed objects, NPC relationship state, chest state, quest state.
     };

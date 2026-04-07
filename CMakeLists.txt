@@ -17,6 +17,9 @@ file(GLOB_RECURSE FARDEW_HEADERS
 
 add_executable(fardew_alley ${FARDEW_SOURCES} ${FARDEW_HEADERS})
 
+# SDL2 — required for window, rendering and input
+find_package(SDL2 REQUIRED)
+
 # Add Source/Fardew and all its subdirectories as include paths
 target_include_directories(fardew_alley PRIVATE
     Source/Fardew
@@ -44,3 +47,10 @@ target_include_directories(fardew_alley PRIVATE
     Source/Fardew/App
     Source/Fardew/Math
 )
+
+if(TARGET SDL2::SDL2)
+    target_link_libraries(fardew_alley PRIVATE SDL2::SDL2)
+else()
+    target_include_directories(fardew_alley PRIVATE ${SDL2_INCLUDE_DIRS})
+    target_link_libraries(fardew_alley PRIVATE ${SDL2_LIBRARIES})
+endif()

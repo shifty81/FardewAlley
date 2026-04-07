@@ -1,4 +1,7 @@
 #include "PlayerManager.h"
+#include "../../Gameplay/GameplayRules.h"
+#include "../../World/Tilemap/CollisionGrid.h"
+#include <cmath>
 
 namespace atlas
 {
@@ -25,6 +28,11 @@ namespace atlas
         m_players[playerIndex].isActive = false;
     }
 
+    void PlayerManager::SetCollisionGrid(const CollisionGrid* grid)
+    {
+        m_collisionGrid = grid;
+    }
+
     void PlayerManager::UpdateGameplayInput(float dt, const PlayerInputContext inputs[2])
     {
         constexpr float moveSpeed = 90.0f;
@@ -38,22 +46,49 @@ namespace atlas
             }
 
             const auto& in = inputs[i].current;
-            player.velocity.x = in.moveX * moveSpeed;
-            player.velocity.y = in.moveY * moveSpeed;
+            const float vx = in.moveX * moveSpeed;
+            const float vy = in.moveY * moveSpeed;
 
-            player.position.x += player.velocity.x * dt;
-            player.position.y += player.velocity.y * dt;
+            const float tileSize = static_cast<float>(GameplayRules::TileSize);
 
-            if (player.velocity.x != 0.0f || player.velocity.y != 0.0f)
+            // Axis-separated collision so players can slide along walls.
+            const float newX    = player.position.x + vx * dt;
+            const int newTileX  = static_cast<int>(newX / tileSize);
+            const int tileY     = static_cast<int>(player.position.y / tileSize);
+            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(newTileX, tileY))
+            {
+                player.position.x = newX;
+            }
+
+            const float newY    = player.position.y + vy * dt;
+            const int tileX     = static_cast<int>(player.position.x / tileSize);
+            const int newTileY  = static_cast<int>(newY / tileSize);
+            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(tileX, newTileY))
+            {
+                player.position.y = newY;
+            }
+
+            player.velocity.x = vx;
+            player.velocity.y = vy;
+
+            if (vx != 0.0f || vy != 0.0f)
             {
                 player.animState = PlayerAnimState::Walk;
+
+                // Update facing from the dominant movement axis.
+                // When both axes are equal the vertical direction takes priority
+                // (most top-down games favour up/down when moving diagonally).
+                if (std::abs(vy) >= std::abs(vx))
+                    player.facing = (vy < 0.0f) ? Direction::Up : Direction::Down;
+                else
+                    player.facing = (vx < 0.0f) ? Direction::Left : Direction::Right;
             }
             else
             {
                 player.animState = PlayerAnimState::Idle;
             }
 
-            // TODO: collision, tool use, combat, interaction targeting, animation facing.
+            // TODO: tool use, combat, interaction targeting, animation facing.
         }
     }
 
