@@ -98,7 +98,7 @@
     <ClCompile Include="Source\Fardew\Gameplay\Interaction\IMT_InteractionSystem.cpp" />
     <ClCompile Include="Source\Fardew\Gameplay\Interaction\VS_InteractionSystem.cpp" />
     <ClCompile Include="Source\Fardew\Gameplay\Inventory.cpp" />
-    <ClCompile Include="Source\Fardew\Gameplay\Inventory\Inventory.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Inventory\VS_Inventory.cpp" />
     <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerController.cpp" />
     <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerManager.cpp" />
     <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerState_Foundation.cpp" />
@@ -152,7 +152,7 @@
     <ClInclude Include="Source\Fardew\Gameplay\Interaction\VS_InteractionSystem.h" />
     <ClInclude Include="Source\Fardew\Gameplay\Interaction\VS_InteractionTypes.h" />
     <ClInclude Include="Source\Fardew\Gameplay\Inventory.h" />
-    <ClInclude Include="Source\Fardew\Gameplay\Inventory\Inventory.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Inventory\VS_Inventory.h" />
     <ClInclude Include="Source\Fardew\Gameplay\Inventory\ItemTypes.h" />
     <ClInclude Include="Source\Fardew\Gameplay\Players\PlayerController.h" />
     <ClInclude Include="Source\Fardew\Gameplay\Players\PlayerManager.h" />

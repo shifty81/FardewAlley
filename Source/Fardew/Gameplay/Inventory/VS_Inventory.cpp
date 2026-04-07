@@ -1,4 +1,4 @@
-#include "Gameplay/Inventory/Inventory.h"
+#include "Gameplay/Inventory/VS_Inventory.h"
 
 Inventory::Inventory(int slotCount)
     : m_slots(static_cast<size_t>(slotCount))

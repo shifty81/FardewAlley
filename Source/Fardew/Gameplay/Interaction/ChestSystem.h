@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Gameplay/Interaction/VS_InteractionComponent.h"
-#include "Gameplay/Inventory/Inventory.h"
+#include "Gameplay/Inventory/VS_Inventory.h"
 #include <string>
 
 struct ChestState

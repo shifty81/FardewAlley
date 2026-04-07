@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Gameplay/Players/VS_PlayerState.h"
-#include "Gameplay/Inventory/Inventory.h"
+#include "Gameplay/Inventory/VS_Inventory.h"
 #include <string>
 
 struct ViewportContext
