@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>FardewAlley</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+
+  <PropertyGroup Label="UserMacros" />
+
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <ClCompile Include="Source\Fardew\App\GameApp.cpp" />
+    <ClCompile Include="Source\Fardew\App\main.cpp" />
+    <ClCompile Include="Source\Fardew\Audio\AudioSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Data\CropData.cpp" />
+    <ClCompile Include="Source\Fardew\Data\ItemData.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\CoopRules.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Dialogue\DialogueSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Farming\CropGrowthSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Farming\CropTypes.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Farming\VS_FarmingSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Farming\WorldDropSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Interaction.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Interaction\ChestSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Interaction\IMT_InteractionSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Interaction\VS_InteractionSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Inventory.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Inventory\Inventory.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerController.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerManager.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Players\PlayerState_Foundation.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Session\SessionManager.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\Session\SplitScreenSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Gameplay\VerticalSliceGame.cpp" />
+    <ClCompile Include="Source\Fardew\Input\InputSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Movement\MovementSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Render\CameraManager.cpp" />
+    <ClCompile Include="Source\Fardew\Render\Renderer2D.cpp" />
+    <ClCompile Include="Source\Fardew\Render\VS_Renderer2D.cpp" />
+    <ClCompile Include="Source\Fardew\Save\SaveSerializer.cpp" />
+    <ClCompile Include="Source\Fardew\Save\SaveSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Time\TimeSystem.cpp" />
+    <ClCompile Include="Source\Fardew\Tools\ToolRegistry.cpp" />
+    <ClCompile Include="Source\Fardew\Tools\ToolRules.cpp" />
+    <ClCompile Include="Source\Fardew\Tools\ToolSystem.cpp" />
+    <ClCompile Include="Source\Fardew\UI\HUDRenderer.cpp" />
+    <ClCompile Include="Source\Fardew\UI\UIManager.cpp" />
+    <ClCompile Include="Source\Fardew\World\TileMap\TileMap.cpp" />
+    <ClCompile Include="Source\Fardew\World\Tilemap\CollisionGrid.cpp" />
+    <ClCompile Include="Source\Fardew\World\Tilemap\TilemapLoader.cpp" />
+    <ClCompile Include="Source\Fardew\World\WorldModel.cpp" />
+    <ClCompile Include="Source\Fardew\World\Zones\ZoneManager.cpp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="Source\Fardew\App\GameApp.h" />
+    <ClInclude Include="Source\Fardew\Audio\AudioSystem.h" />
+    <ClInclude Include="Source\Fardew\Core\FardewTypes.h" />
+    <ClInclude Include="Source\Fardew\Core\GameConfig.h" />
+    <ClInclude Include="Source\Fardew\Core\GameEnums.h" />
+    <ClInclude Include="Source\Fardew\Core\MathTypes.h" />
+    <ClInclude Include="Source\Fardew\Core\Tile.h" />
+    <ClInclude Include="Source\Fardew\Core\Types.h" />
+    <ClInclude Include="Source\Fardew\Core\VS_Types.h" />
+    <ClInclude Include="Source\Fardew\Data\CropData.h" />
+    <ClInclude Include="Source\Fardew\Data\ItemData.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\CoopRules.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Dialogue\DialogueSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Farming\VS_FarmingSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Farming\VS_FarmingTypes.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\GameplayRules.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\GameplayWorld.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\ChestSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\IMT_InteractionComponent.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\IMT_InteractionSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\IMT_InteractionTypes.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\VS_InteractionComponent.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\VS_InteractionSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Interaction\VS_InteractionTypes.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Inventory.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Inventory\Inventory.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Inventory\ItemTypes.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Players\PlayerController.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Players\PlayerManager.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Players\PlayerState_Foundation.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Players\SplitScreen_PlayerState.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Players\VS_PlayerState.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Session\SessionManager.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Session\SessionState.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\Session\SplitScreenSystem.h" />
+    <ClInclude Include="Source\Fardew\Gameplay\VerticalSliceGame.h" />
+    <ClInclude Include="Source\Fardew\Input\InputBindings.h" />
+    <ClInclude Include="Source\Fardew\Input\InputSnapshot.h" />
+    <ClInclude Include="Source\Fardew\Input\InputState.h" />
+    <ClInclude Include="Source\Fardew\Input\InputSystem.h" />
+    <ClInclude Include="Source\Fardew\Input\PlayerInputContext.h" />
+    <ClInclude Include="Source\Fardew\Math\Rect.h" />
+    <ClInclude Include="Source\Fardew\Math\Vec2.h" />
+    <ClInclude Include="Source\Fardew\Movement\GridPosition.h" />
+    <ClInclude Include="Source\Fardew\Movement\MovementComponent.h" />
+    <ClInclude Include="Source\Fardew\Movement\MovementSystem.h" />
+    <ClInclude Include="Source\Fardew\Render\Camera2D.h" />
+    <ClInclude Include="Source\Fardew\Render\CameraManager.h" />
+    <ClInclude Include="Source\Fardew\Render\Renderer2D.h" />
+    <ClInclude Include="Source\Fardew\Render\VS_Renderer2D.h" />
+    <ClInclude Include="Source\Fardew\Render\ViewportContext.h" />
+    <ClInclude Include="Source\Fardew\Save\SaveGame.h" />
+    <ClInclude Include="Source\Fardew\Save\SaveSerializer.h" />
+    <ClInclude Include="Source\Fardew\Save\SaveSystem.h" />
+    <ClInclude Include="Source\Fardew\Save\SaveTypes.h" />
+    <ClInclude Include="Source\Fardew\Tools\ActionContext.h" />
+    <ClInclude Include="Source\Fardew\Tools\ActionResult.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolComponent.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolData.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolInstance.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolRegistry.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolRules.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolSystem.h" />
+    <ClInclude Include="Source\Fardew\Tools\ToolTypes.h" />
+    <ClInclude Include="Source\Fardew\UI\HUDContext.h" />
+    <ClInclude Include="Source\Fardew\UI\HUDRenderer.h" />
+    <ClInclude Include="Source\Fardew\UI\UIManager.h" />
+    <ClInclude Include="Source\Fardew\World\TileMap\IMT_TileMap.h" />
+    <ClInclude Include="Source\Fardew\World\TileMap\IMT_TileTypes.h" />
+    <ClInclude Include="Source\Fardew\World\TileMap\TileMap.h" />
+    <ClInclude Include="Source\Fardew\World\TileMap\TileState.h" />
+    <ClInclude Include="Source\Fardew\World\TileMap\TileTypes.h" />
+    <ClInclude Include="Source\Fardew\World\Tilemap\CollisionGrid.h" />
+    <ClInclude Include="Source\Fardew\World\Tilemap\TilemapLoader.h" />
+    <ClInclude Include="Source\Fardew\World\Tilemap\TilemapTypes.h" />
+    <ClInclude Include="Source\Fardew\World\WorldModel.h" />
+    <ClInclude Include="Source\Fardew\World\Zones\ZoneManager.h" />
+    <ClInclude Include="Source\Fardew\World\Zones\ZoneTransition.h" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
