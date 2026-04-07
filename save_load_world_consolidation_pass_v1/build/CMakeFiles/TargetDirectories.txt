@@ -1,3 +1,0 @@
-/mnt/data/save_load_world_consolidation_pass_v1/build/CMakeFiles/save_load_world_demo.dir
-/mnt/data/save_load_world_consolidation_pass_v1/build/CMakeFiles/edit_cache.dir
-/mnt/data/save_load_world_consolidation_pass_v1/build/CMakeFiles/rebuild_cache.dir
