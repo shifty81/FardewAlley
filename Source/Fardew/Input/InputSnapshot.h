@@ -16,5 +16,6 @@ namespace atlas
         bool cancelPressed = false;
         bool nextHotbarPressed = false;
         bool prevHotbarPressed = false;
+        int  hotbarSlotRequested = -1;  // -1 = no direct selection; 0-based slot index otherwise
     };
 }

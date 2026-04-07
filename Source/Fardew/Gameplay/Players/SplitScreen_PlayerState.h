@@ -3,9 +3,17 @@
 #include "../../Core/GameEnums.h"
 #include "../../Core/MathTypes.h"
 #include "../../Core/Types.h"
+#include "../Inventory/ItemTypes.h"
+#include "../../Gameplay/GameplayRules.h"
 
 namespace atlas
 {
+    struct HotbarSlot
+    {
+        ItemType type  = ItemType::None;
+        int      count = 0;
+    };
+
     struct PlayerState
     {
         EntityId entity = InvalidEntityId;
@@ -23,6 +31,11 @@ namespace atlas
         int maxStamina = 100;
 
         InventoryId inventory = InvalidInventoryId;
+
+        // Hotbar
+        static constexpr int kHotbarSize = GameplayRules::MaxHotbarSlots;
+        int selectedHotbarSlot = 0;
+        HotbarSlot hotbar[kHotbarSize]{};
 
         bool isInDialogue = false;
         bool isInMenu = false;
