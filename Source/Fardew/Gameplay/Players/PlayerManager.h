@@ -4,7 +4,8 @@
 #include "../../Input/PlayerInputContext.h"
 #include "../../World/Zones/ZoneTransition.h"
 
-class CollisionGrid;  // forward declaration — full type included in .cpp
+class CollisionGrid;   // forward declaration — full type included in .cpp
+class FarmingSystem;   // forward declaration
 
 namespace atlas
 {
@@ -16,6 +17,7 @@ namespace atlas
         void DeactivatePlayer(int playerIndex);
 
         void SetCollisionGrid(const CollisionGrid* grid);
+        void SetFarmingSystem(FarmingSystem* farming);
         void UpdateGameplayInput(float dt, const PlayerInputContext inputs[2]);
         void ApplyZoneTransition(int playerIndex, const ZoneTransition& transition);
 
@@ -25,7 +27,11 @@ namespace atlas
         static constexpr int kMaxPlayers = 2;
 
     private:
+        void DispatchToolUse(PlayerState& player);
+        void DispatchInteract(PlayerState& player);
+
         PlayerState m_players[2]{};
         const CollisionGrid* m_collisionGrid = nullptr;
+        FarmingSystem*       m_farming       = nullptr;
     };
 }

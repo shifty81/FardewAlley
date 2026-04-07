@@ -56,8 +56,19 @@ namespace atlas
 
         m_playerManager.Initialize();
         m_playerManager.SetCollisionGrid(m_collision.get());
+        m_playerManager.SetFarmingSystem(m_farming.get());
         m_playerManager.ActivatePlayer(0, 1, { 64.0f, 64.0f });
         m_playerManager.ActivatePlayer(1, 1, { 96.0f, 64.0f });
+
+        // Give each player a starting hotbar: hoe, watering can, seeds.
+        auto seedHotbar = [](PlayerState& p)
+        {
+            p.hotbar[0] = { ItemType::Hoe,        1 };
+            p.hotbar[1] = { ItemType::WateringCan, 1 };
+            p.hotbar[2] = { ItemType::SeedTurnip,  5 };
+        };
+        seedHotbar(m_playerManager.GetPlayer(0));
+        seedHotbar(m_playerManager.GetPlayer(1));
 
         m_cameraManager.Initialize();
         m_zoneManager.Initialize();
@@ -68,6 +79,11 @@ namespace atlas
         m_renderer.Init(m_sdlRenderer, m_sdlWindow);
         m_renderer.SetWorldContext(
             m_tilemap.get(), m_collision.get(), m_farming.get(),
+            m_playerManager.GetPlayers(), PlayerManager::kMaxPlayers);
+
+        // Wire UIManager with SDL context and player data for HUD rendering.
+        m_uiManager.SetRenderContext(
+            m_sdlRenderer,
             m_playerManager.GetPlayers(), PlayerManager::kMaxPlayers);
 
         for (int i = 0; i < 2; ++i)
@@ -98,6 +114,9 @@ namespace atlas
             m_inputs[i].current.useToolPressed   = false;
             m_inputs[i].current.inventoryPressed = false;
             m_inputs[i].current.menuPressed      = false;
+            m_inputs[i].current.nextHotbarPressed = false;
+            m_inputs[i].current.prevHotbarPressed = false;
+            m_inputs[i].current.hotbarSlotRequested = -1;
         }
 
         // Drain the SDL event queue — detect key-down edges and quit events.
@@ -119,10 +138,25 @@ namespace atlas
                     case SDLK_SPACE:   m_inputs[0].current.useToolPressed   = true; break;
                     case SDLK_f:       m_inputs[0].current.inventoryPressed = true; break;
                     case SDLK_TAB:     m_inputs[0].current.menuPressed      = true; break;
+                    case SDLK_q:       m_inputs[0].current.prevHotbarPressed = true; break;
+                    case SDLK_r:       m_inputs[0].current.nextHotbarPressed = true; break;
+                    // Player 0 — direct slot selection with number keys 1–9, 0.
+                    case SDLK_1: m_inputs[0].current.hotbarSlotRequested = 0; break;
+                    case SDLK_2: m_inputs[0].current.hotbarSlotRequested = 1; break;
+                    case SDLK_3: m_inputs[0].current.hotbarSlotRequested = 2; break;
+                    case SDLK_4: m_inputs[0].current.hotbarSlotRequested = 3; break;
+                    case SDLK_5: m_inputs[0].current.hotbarSlotRequested = 4; break;
+                    case SDLK_6: m_inputs[0].current.hotbarSlotRequested = 5; break;
+                    case SDLK_7: m_inputs[0].current.hotbarSlotRequested = 6; break;
+                    case SDLK_8: m_inputs[0].current.hotbarSlotRequested = 7; break;
+                    case SDLK_9: m_inputs[0].current.hotbarSlotRequested = 8; break;
+                    case SDLK_0: m_inputs[0].current.hotbarSlotRequested = 9; break;
                     // Player 1 (arrows) action keys
                     case SDLK_RCTRL:   m_inputs[1].current.interactPressed = true; break;
                     case SDLK_RSHIFT:  m_inputs[1].current.useToolPressed   = true; break;
                     case SDLK_SLASH:   m_inputs[1].current.inventoryPressed = true; break;
+                    case SDLK_PERIOD:  m_inputs[1].current.nextHotbarPressed = true; break;
+                    case SDLK_COMMA:   m_inputs[1].current.prevHotbarPressed = true; break;
                     default: break;
                 }
             }
@@ -236,7 +270,7 @@ namespace atlas
         {
             m_renderer.BeginViewport(splitSystem.GetViewport(i), m_cameraManager.GetCamera(i));
             m_renderer.RenderWorld(i);
-            m_uiManager.RenderHUD(i);
+            m_uiManager.RenderHUD(i, splitSystem.GetViewport(i));
             m_renderer.EndViewport();
         }
 
