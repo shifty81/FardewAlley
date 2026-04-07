@@ -65,7 +65,7 @@ namespace atlas
         for (int i = 0; i < 2; ++i)
         {
             const PlayerSaveData& p = save.players[i];
-            const std::uint8_t occupied = p.occupied ? 1u : 0u;
+            const std::uint8_t occupied = static_cast<std::uint8_t>(p.occupied);
             ofs.write(reinterpret_cast<const char*>(&occupied), sizeof(occupied));
             ofs.write(reinterpret_cast<const char*>(&p.zone), sizeof(p.zone));
             ofs.write(reinterpret_cast<const char*>(&p.position.x), sizeof(p.position.x));

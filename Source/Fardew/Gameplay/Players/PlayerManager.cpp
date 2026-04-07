@@ -51,18 +51,18 @@ namespace atlas
             const float tileSize = static_cast<float>(GameplayRules::TileSize);
 
             // Axis-separated collision so players can slide along walls.
-            const float newX = player.position.x + vx * dt;
-            const int tileXnew = static_cast<int>(newX / tileSize);
-            const int tileY    = static_cast<int>(player.position.y / tileSize);
-            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(tileXnew, tileY))
+            const float newX    = player.position.x + vx * dt;
+            const int newTileX  = static_cast<int>(newX / tileSize);
+            const int tileY     = static_cast<int>(player.position.y / tileSize);
+            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(newTileX, tileY))
             {
                 player.position.x = newX;
             }
 
-            const float newY = player.position.y + vy * dt;
-            const int tileX    = static_cast<int>(player.position.x / tileSize);
-            const int tileYnew = static_cast<int>(newY / tileSize);
-            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(tileX, tileYnew))
+            const float newY    = player.position.y + vy * dt;
+            const int tileX     = static_cast<int>(player.position.x / tileSize);
+            const int newTileY  = static_cast<int>(newY / tileSize);
+            if (!m_collisionGrid || !m_collisionGrid->IsBlocked(tileX, newTileY))
             {
                 player.position.y = newY;
             }
