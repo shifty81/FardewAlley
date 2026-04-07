@@ -2,7 +2,7 @@
 
 #include "Gameplay/GameplayWorld.h"
 #include "Gameplay/Players/VS_PlayerState.h"
-#include "Gameplay/Inventory/Inventory.h"
+#include "Gameplay/Inventory/VS_Inventory.h"
 #include "Render/VS_Renderer2D.h"
 #include "UI/HUDRenderer.h"
 #include <array>
