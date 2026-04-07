@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace atlasdemo {
+namespace atlas {
 
 struct Vec2i {
     int x = 0;
@@ -54,4 +54,4 @@ struct WorldState {
     InventoryState inventory;
 };
 
-} // namespace atlasdemo
+} // namespace atlas

@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace atlasdemo {
+namespace atlas {
 
 class SaveLoadService {
 public:
@@ -212,4 +212,4 @@ private:
     }
 };
 
-} // namespace atlasdemo
+} // namespace atlas
