@@ -123,8 +123,10 @@ namespace atlas
 
                 const int sx = static_cast<int>((worldX - camX) * zoom + vw * 0.5f);
                 const int sy = static_cast<int>((worldY - camY) * zoom + vh * 0.5f);
-                const int sw = static_cast<int>(tileDisp) + 1; // +1 avoids hairline gaps
-                const int sh = static_cast<int>(tileDisp) + 1;
+                // Use ceil to fill the exact pixel footprint of each tile so there
+                // are no hairline gaps at fractional zoom values.
+                const int sw = static_cast<int>(std::ceil(tileDisp));
+                const int sh = static_cast<int>(std::ceil(tileDisp));
 
                 // Choose colour based on world state.
                 RGB col = kColorGrass;

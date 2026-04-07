@@ -75,7 +75,9 @@ namespace atlas
             {
                 player.animState = PlayerAnimState::Walk;
 
-                // Update facing direction based on dominant axis.
+                // Update facing from the dominant movement axis.
+                // When both axes are equal the vertical direction takes priority
+                // (most top-down games favour up/down when moving diagonally).
                 if (std::abs(vy) >= std::abs(vx))
                     player.facing = (vy < 0.0f) ? Direction::Up : Direction::Down;
                 else

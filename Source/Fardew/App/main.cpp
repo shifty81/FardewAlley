@@ -11,6 +11,10 @@ int main()
         return 1;
     }
 
+    // Maximum delta-time allowed in a single frame (caps physics/logic on stalls
+    // such as window moves or debugger pauses).
+    constexpr float kMaxDeltaTimeSeconds = 0.1f;
+
     Uint32 lastTick = SDL_GetTicks();
 
     while (!app.ShouldQuit())
@@ -19,8 +23,7 @@ int main()
         float dt = static_cast<float>(now - lastTick) / 1000.0f;
         lastTick = now;
 
-        // Cap delta time so a stall (e.g. window move) doesn't cause a large jump.
-        if (dt > 0.1f) dt = 0.1f;
+        if (dt > kMaxDeltaTimeSeconds) dt = kMaxDeltaTimeSeconds;
 
         app.RunFrame(dt);
     }

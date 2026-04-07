@@ -51,7 +51,8 @@ namespace atlas
         }
 
         // Header: magic + version
-        const std::uint32_t magic = 0x46524457u; // 'FRDW'
+        // 0x57445246 = bytes 'W','D','R','F' on little-endian (WDRF in stored order)
+        const std::uint32_t magic = 0x57445246u;
         const std::uint32_t version = 1u;
         ofs.write(reinterpret_cast<const char*>(&magic), sizeof(magic));
         ofs.write(reinterpret_cast<const char*>(&version), sizeof(version));
@@ -91,7 +92,7 @@ namespace atlas
         std::uint32_t version = 0u;
         ifs.read(reinterpret_cast<char*>(&magic), sizeof(magic));
         ifs.read(reinterpret_cast<char*>(&version), sizeof(version));
-        if (magic != 0x46524457u || version != 1u)
+        if (magic != 0x57445246u || version != 1u)
         {
             return false;
         }
