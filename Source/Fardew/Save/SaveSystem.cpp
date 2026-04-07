@@ -1,4 +1,6 @@
 #include "SaveSystem.h"
+#include <fstream>
+#include <cstdint>
 
 namespace atlas
 {
@@ -40,15 +42,80 @@ namespace atlas
         // TODO: restore world state.
     }
 
-    bool SaveSystem::SaveToDisk(const char*, const SaveGameData&) const
+    bool SaveSystem::SaveToDisk(const char* path, const SaveGameData& save) const
     {
-        // TODO: implement binary or JSON serialization.
-        return false;
+        std::ofstream ofs(path, std::ios::binary | std::ios::trunc);
+        if (!ofs.is_open())
+        {
+            return false;
+        }
+
+        // Header: magic + version
+        const std::uint32_t magic = 0x46524457u; // 'FRDW'
+        const std::uint32_t version = 1u;
+        ofs.write(reinterpret_cast<const char*>(&magic), sizeof(magic));
+        ofs.write(reinterpret_cast<const char*>(&version), sizeof(version));
+
+        // World state
+        ofs.write(reinterpret_cast<const char*>(&save.world.dayNumber), sizeof(int));
+        ofs.write(reinterpret_cast<const char*>(&save.world.clockMinuteOfDay), sizeof(int));
+        ofs.write(reinterpret_cast<const char*>(&save.world.weatherType), sizeof(int));
+
+        // Player slots
+        for (int i = 0; i < 2; ++i)
+        {
+            const PlayerSaveData& p = save.players[i];
+            const std::uint8_t occupied = p.occupied ? 1u : 0u;
+            ofs.write(reinterpret_cast<const char*>(&occupied), sizeof(occupied));
+            ofs.write(reinterpret_cast<const char*>(&p.zone), sizeof(p.zone));
+            ofs.write(reinterpret_cast<const char*>(&p.position.x), sizeof(p.position.x));
+            ofs.write(reinterpret_cast<const char*>(&p.position.y), sizeof(p.position.y));
+            ofs.write(reinterpret_cast<const char*>(&p.health), sizeof(p.health));
+            ofs.write(reinterpret_cast<const char*>(&p.stamina), sizeof(p.stamina));
+            ofs.write(reinterpret_cast<const char*>(&p.inventory), sizeof(p.inventory));
+        }
+
+        return ofs.good();
     }
 
-    bool SaveSystem::LoadFromDisk(const char*, SaveGameData&) const
+    bool SaveSystem::LoadFromDisk(const char* path, SaveGameData& outSave) const
     {
-        // TODO: implement binary or JSON deserialization.
-        return false;
+        std::ifstream ifs(path, std::ios::binary);
+        if (!ifs.is_open())
+        {
+            return false;
+        }
+
+        // Validate header
+        std::uint32_t magic = 0u;
+        std::uint32_t version = 0u;
+        ifs.read(reinterpret_cast<char*>(&magic), sizeof(magic));
+        ifs.read(reinterpret_cast<char*>(&version), sizeof(version));
+        if (magic != 0x46524457u || version != 1u)
+        {
+            return false;
+        }
+
+        // World state
+        ifs.read(reinterpret_cast<char*>(&outSave.world.dayNumber), sizeof(int));
+        ifs.read(reinterpret_cast<char*>(&outSave.world.clockMinuteOfDay), sizeof(int));
+        ifs.read(reinterpret_cast<char*>(&outSave.world.weatherType), sizeof(int));
+
+        // Player slots
+        for (int i = 0; i < 2; ++i)
+        {
+            PlayerSaveData& p = outSave.players[i];
+            std::uint8_t occupied = 0u;
+            ifs.read(reinterpret_cast<char*>(&occupied), sizeof(occupied));
+            p.occupied = (occupied != 0u);
+            ifs.read(reinterpret_cast<char*>(&p.zone), sizeof(p.zone));
+            ifs.read(reinterpret_cast<char*>(&p.position.x), sizeof(p.position.x));
+            ifs.read(reinterpret_cast<char*>(&p.position.y), sizeof(p.position.y));
+            ifs.read(reinterpret_cast<char*>(&p.health), sizeof(p.health));
+            ifs.read(reinterpret_cast<char*>(&p.stamina), sizeof(p.stamina));
+            ifs.read(reinterpret_cast<char*>(&p.inventory), sizeof(p.inventory));
+        }
+
+        return ifs.good();
     }
 }
