@@ -21,6 +21,10 @@ struct TilemapData;
 class FarmingSystem;
 namespace TimeSystem { class WorldClock; }
 
+// SDL opaque types — avoid including SDL in every TU that includes GameApp.h.
+struct SDL_Window;
+struct SDL_Renderer;
+
 namespace atlas
 {
     class GameApp
@@ -31,6 +35,8 @@ namespace atlas
 
         bool Initialize(const GameConfig& config);
         void RunFrame(float dt);
+
+        bool ShouldQuit() const { return m_gameMode == GameMode::ShuttingDown; }
 
         bool SaveGame(const char* path);
         bool LoadGame(const char* path);
@@ -53,6 +59,10 @@ namespace atlas
         Renderer2D m_renderer{};
         SaveSystem m_saveSystem{};
         AudioSystem m_audioSystem{};
+
+        // SDL window and renderer (owned by GameApp).
+        SDL_Window*   m_sdlWindow   = nullptr;
+        SDL_Renderer* m_sdlRenderer = nullptr;
 
         // Owned subsystems whose headers use VS-namespace global types.
         std::unique_ptr<TimeSystem::WorldClock> m_clock;

@@ -1,6 +1,7 @@
 #include "PlayerManager.h"
 #include "../../Gameplay/GameplayRules.h"
 #include "../../World/Tilemap/CollisionGrid.h"
+#include <cmath>
 
 namespace atlas
 {
@@ -73,6 +74,12 @@ namespace atlas
             if (vx != 0.0f || vy != 0.0f)
             {
                 player.animState = PlayerAnimState::Walk;
+
+                // Update facing direction based on dominant axis.
+                if (std::abs(vy) >= std::abs(vx))
+                    player.facing = (vy < 0.0f) ? Direction::Up : Direction::Down;
+                else
+                    player.facing = (vx < 0.0f) ? Direction::Left : Direction::Right;
             }
             else
             {

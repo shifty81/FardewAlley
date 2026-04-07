@@ -6,7 +6,7 @@ namespace atlas
     {
         for (int i = 0; i < 2; ++i)
         {
-            m_cameras[i].zoom = 1.0f;
+            m_cameras[i].zoom       = 2.0f;   // 2× zoom: 16px tiles appear as 32px
             m_cameras[i].smoothTime = 0.10f;
         }
     }

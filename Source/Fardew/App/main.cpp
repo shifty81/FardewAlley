@@ -1,4 +1,5 @@
 #include "GameApp.h"
+#include <SDL2/SDL.h>
 
 int main()
 {
@@ -10,10 +11,18 @@ int main()
         return 1;
     }
 
-    // TODO: replace with real platform loop and fixed timestep.
-    for (;;)
+    Uint32 lastTick = SDL_GetTicks();
+
+    while (!app.ShouldQuit())
     {
-        app.RunFrame(config.fixedTimeStepSeconds);
+        const Uint32 now = SDL_GetTicks();
+        float dt = static_cast<float>(now - lastTick) / 1000.0f;
+        lastTick = now;
+
+        // Cap delta time so a stall (e.g. window move) doesn't cause a large jump.
+        if (dt > 0.1f) dt = 0.1f;
+
+        app.RunFrame(dt);
     }
 
     return 0;

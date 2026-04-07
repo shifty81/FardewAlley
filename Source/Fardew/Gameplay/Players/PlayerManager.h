@@ -21,6 +21,8 @@ namespace atlas
 
         PlayerState& GetPlayer(int playerIndex);
         const PlayerState& GetPlayer(int playerIndex) const;
+        const PlayerState* GetPlayers() const { return m_players; }
+        static constexpr int kMaxPlayers = 2;
 
     private:
         PlayerState m_players[2]{};
