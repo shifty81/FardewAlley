@@ -55,11 +55,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;$(SDL2_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SDL2_DIR)\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -71,13 +73,15 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Fardew;$(ProjectDir)Source\Fardew\App;$(ProjectDir)Source\Fardew\Audio;$(ProjectDir)Source\Fardew\Core;$(ProjectDir)Source\Fardew\Data;$(ProjectDir)Source\Fardew\Gameplay;$(ProjectDir)Source\Fardew\Gameplay\Dialogue;$(ProjectDir)Source\Fardew\Gameplay\Farming;$(ProjectDir)Source\Fardew\Gameplay\Interaction;$(ProjectDir)Source\Fardew\Gameplay\Inventory;$(ProjectDir)Source\Fardew\Gameplay\Players;$(ProjectDir)Source\Fardew\Gameplay\Session;$(ProjectDir)Source\Fardew\Input;$(ProjectDir)Source\Fardew\Math;$(ProjectDir)Source\Fardew\Movement;$(ProjectDir)Source\Fardew\Render;$(ProjectDir)Source\Fardew\Save;$(ProjectDir)Source\Fardew\Time;$(ProjectDir)Source\Fardew\Tools;$(ProjectDir)Source\Fardew\UI;$(ProjectDir)Source\Fardew\World;$(ProjectDir)Source\Fardew\World\TileMap;$(ProjectDir)Source\Fardew\World\Tilemap;$(ProjectDir)Source\Fardew\World\Zones;$(SDL2_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SDL2_DIR)\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
 

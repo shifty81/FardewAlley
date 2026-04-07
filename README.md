@@ -4,12 +4,29 @@ A top-down farming/adventure game in C++17 with split-screen local co-op support
 
 ## Building
 
+### Linux / macOS (CMake)
+
 ```bash
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 make -j$(nproc)
 ./fardew_alley
 ```
+
+Install SDL2 first if needed:
+- **Ubuntu/Debian:** `sudo apt install libsdl2-dev`
+- **macOS (Homebrew):** `brew install sdl2`
+
+### Windows (Visual Studio)
+
+1. Download the SDL2 **development libraries** for Windows (VC) from https://github.com/libsdl-org/SDL/releases and extract them (e.g. to `C:\SDL2`).
+2. Set the environment variable `SDL2_DIR` to the root of the extracted folder (replace `2.x.x` with the actual version number you downloaded, e.g. `2.30.0`):
+   ```
+   setx SDL2_DIR "C:\SDL2\SDL2-2.x.x"
+   ```
+   The folder must contain `include\SDL2\SDL.h` and `lib\x64\SDL2.lib`.
+3. Restart Visual Studio, then open `FardewAlley.sln` and build normally.
+4. Copy `$(SDL2_DIR)\lib\x64\SDL2.dll` next to the built `.exe` before running.
 
 ## Project Structure
 
