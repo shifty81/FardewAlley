@@ -1,0 +1,25 @@
+#pragma once
+
+#include "PlayerState.h"
+#include "../../Input/PlayerInputContext.h"
+#include "../../World/Zones/ZoneTransition.h"
+
+namespace atlas
+{
+    class PlayerManager
+    {
+    public:
+        void Initialize();
+        void ActivatePlayer(int playerIndex, ZoneId zone, Vec2 spawnPosition);
+        void DeactivatePlayer(int playerIndex);
+
+        void UpdateGameplayInput(float dt, const PlayerInputContext inputs[2]);
+        void ApplyZoneTransition(int playerIndex, const ZoneTransition& transition);
+
+        PlayerState& GetPlayer(int playerIndex);
+        const PlayerState& GetPlayer(int playerIndex) const;
+
+    private:
+        PlayerState m_players[2]{};
+    };
+}
